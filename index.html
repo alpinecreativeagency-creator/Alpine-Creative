@@ -1,0 +1,975 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alpine Creative Agency | Swiss Digital Excellence</title>
+    <meta name="description" content="Premium web design and digital solutions from Geneva & Founex, Switzerland. Bespoke websites with Swiss precision and elegance.">
+    <meta name="keywords" content="web design, Geneva, Switzerland, digital agency, Founex, Swiss design">
+    <meta name="author" content="Alpine Creative Agency">
+    <meta property="og:title" content="Alpine Creative Agency | Swiss Digital Excellence">
+    <meta property="og:description" content="Premium web design and digital solutions from Geneva & Founex, Switzerland.">
+    <meta property="og:locale" content="en_CH">
+    <meta property="og:type" content="website">
+    <meta name="theme-color" content="#f8fafc">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'ice-blue': '#0ea5e9',
+                        'ice-blue-light': '#38bdf8',
+                        'midnight-slate': '#1e293b',
+                        'alpine-white': '#f8fafc',
+                        'alpine-gray': '#94a3b8',
+                    },
+                    fontFamily: {
+                        'sans': ['Inter', 'system-ui', 'sans-serif'],
+                        'serif': ['Playfair Display', 'Georgia', 'serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        /* Custom animations */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeInLeft {
+            from { opacity: 0; transform: translateX(-30px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        @keyframes fadeInRight {
+            from { opacity: 0; transform: translateX(30px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .animate-fade-in-up { animation: fadeInUp 0.8s ease-out forwards; }
+        .animate-fade-in-left { animation: fadeInLeft 0.8s ease-out forwards; }
+        .animate-fade-in-right { animation: fadeInRight 0.8s ease-out forwards; }
+        .animate-fade-in { animation: fadeIn 0.8s ease-out forwards; }
+        
+        .delay-100 { animation-delay: 100ms; }
+        .delay-200 { animation-delay: 200ms; }
+        .delay-300 { animation-delay: 300ms; }
+        .delay-400 { animation-delay: 400ms; }
+        .delay-500 { animation-delay: 500ms; }
+        
+        /* Glassmorphism */
+        .glass {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(226, 232, 240, 0.5);
+        }
+        
+        /* Scroll reveal */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Hide elements based on language */
+        [data-lang="fr"] { display: none; }
+        html[lang="fr"] [data-lang="en"] { display: none; }
+        html[lang="fr"] [data-lang="fr"] { display: block; }
+        html[lang="fr"] span[data-lang="fr"] { display: inline; }
+    </style>
+</head>
+<body class="bg-alpine-white text-midnight-slate antialiased">
+    
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 glass transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo -->
+                <a href="#" class="flex items-center gap-3 group">
+                    <div class="w-10 h-10 bg-midnight-slate rounded-lg flex items-center justify-center group-hover:bg-ice-blue transition-colors duration-300">
+                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                        </svg>
+                    </div>
+                    <span class="text-xl font-semibold text-midnight-slate">Alpine Creative</span>
+                </a>
+                
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex items-center gap-8">
+                    <a href="#services" class="text-alpine-gray hover:text-midnight-slate transition-colors duration-200 font-medium">
+                        <span data-lang="en">Services</span>
+                        <span data-lang="fr">Services</span>
+                    </a>
+                    <a href="#pricing" class="text-alpine-gray hover:text-midnight-slate transition-colors duration-200 font-medium">
+                        <span data-lang="en">Pricing</span>
+                        <span data-lang="fr">Tarifs</span>
+                    </a>
+                    <a href="#trust" class="text-alpine-gray hover:text-midnight-slate transition-colors duration-200 font-medium">
+                        <span data-lang="en">Clients</span>
+                        <span data-lang="fr">Clients</span>
+                    </a>
+                    <a href="#contact" class="text-alpine-gray hover:text-midnight-slate transition-colors duration-200 font-medium">
+                        <span data-lang="en">Contact</span>
+                        <span data-lang="fr">Contact</span>
+                    </a>
+                </div>
+                
+                <!-- Language Toggle & CTA -->
+                <div class="flex items-center gap-4">
+                    <!-- Language Toggle -->
+                    <div class="flex items-center bg-slate-100 rounded-full p-1">
+                        <button onclick="setLanguage('en')" id="lang-en" class="px-3 py-1.5 rounded-full text-sm font-medium transition-all duration-200 bg-white text-midnight-slate shadow-sm">
+                            EN
+                        </button>
+                        <button onclick="setLanguage('fr')" id="lang-fr" class="px-3 py-1.5 rounded-full text-sm font-medium transition-all duration-200 text-alpine-gray hover:text-midnight-slate">
+                            FR
+                        </button>
+                    </div>
+                    
+                    <!-- CTA Button -->
+                    <a href="#contact" class="hidden sm:inline-flex px-5 py-2.5 bg-midnight-slate text-white rounded-lg font-medium hover:bg-ice-blue transition-all duration-300 hover:scale-105">
+                        <span data-lang="en">Get Started</span>
+                        <span data-lang="fr">Commencer</span>
+                    </a>
+                    
+                    <!-- Mobile Menu Button -->
+                    <button onclick="toggleMobileMenu()" class="md:hidden p-2 text-midnight-slate">
+                        <svg id="menu-icon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                        </svg>
+                        <svg id="close-icon" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="hidden md:hidden pb-4">
+                <div class="flex flex-col gap-2">
+                    <a href="#services" onclick="closeMobileMenu()" class="px-4 py-3 text-alpine-gray hover:text-midnight-slate hover:bg-slate-50 rounded-lg transition-colors">
+                        <span data-lang="en">Services</span>
+                        <span data-lang="fr">Services</span>
+                    </a>
+                    <a href="#pricing" onclick="closeMobileMenu()" class="px-4 py-3 text-alpine-gray hover:text-midnight-slate hover:bg-slate-50 rounded-lg transition-colors">
+                        <span data-lang="en">Pricing</span>
+                        <span data-lang="fr">Tarifs</span>
+                    </a>
+                    <a href="#trust" onclick="closeMobileMenu()" class="px-4 py-3 text-alpine-gray hover:text-midnight-slate hover:bg-slate-50 rounded-lg transition-colors">
+                        <span data-lang="en">Clients</span>
+                        <span data-lang="fr">Clients</span>
+                    </a>
+                    <a href="#contact" onclick="closeMobileMenu()" class="px-4 py-3 text-alpine-gray hover:text-midnight-slate hover:bg-slate-50 rounded-lg transition-colors">
+                        <span data-lang="en">Contact</span>
+                        <span data-lang="fr">Contact</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Hero Section -->
+    <section class="min-h-screen flex items-center justify-center relative overflow-hidden pt-20">
+        <!-- Background Pattern -->
+        <div class="absolute inset-0 opacity-30">
+            <div class="absolute top-20 left-10 w-72 h-72 bg-ice-blue/10 rounded-full blur-3xl"></div>
+            <div class="absolute bottom-20 right-10 w-96 h-96 bg-ice-blue/5 rounded-full blur-3xl"></div>
+        </div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 relative z-10">
+            <div class="text-center max-w-4xl mx-auto">
+                <!-- Tagline -->
+                <div class="animate-fade-in-up opacity-0 mb-6">
+                    <span class="inline-flex items-center gap-2 px-4 py-2 bg-ice-blue/10 text-ice-blue rounded-full text-sm font-medium">
+                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/>
+                        </svg>
+                        <span data-lang="en">Geneva & Founex, Switzerland</span>
+                        <span data-lang="fr">Geneve & Founex, Suisse</span>
+                    </span>
+                </div>
+                
+                <!-- Main Headline -->
+                <h1 class="animate-fade-in-up opacity-0 delay-100 font-serif text-5xl sm:text-6xl lg:text-7xl font-bold text-midnight-slate leading-tight mb-6">
+                    <span data-lang="en">Swiss Precision in</span>
+                    <span data-lang="fr">La Precision Suisse au</span>
+                    <br>
+                    <span class="text-ice-blue">
+                        <span data-lang="en">Digital Design</span>
+                        <span data-lang="fr">Service du Digital</span>
+                    </span>
+                </h1>
+                
+                <!-- Subheadline -->
+                <p class="animate-fade-in-up opacity-0 delay-200 text-xl sm:text-2xl text-alpine-gray max-w-2xl mx-auto mb-10 leading-relaxed">
+                    <span data-lang="en">Bespoke websites crafted with elegance and performance. We transform your vision into digital excellence.</span>
+                    <span data-lang="fr">Sites web sur mesure, concus avec elegance et performance. Nous transformons votre vision en excellence numerique.</span>
+                </p>
+                
+                <!-- CTAs -->
+                <div class="animate-fade-in-up opacity-0 delay-300 flex flex-col sm:flex-row items-center justify-center gap-4">
+                    <a href="#contact" class="group px-8 py-4 bg-midnight-slate text-white rounded-xl font-semibold text-lg hover:bg-ice-blue transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl flex items-center gap-2">
+                        <span data-lang="en">Start Your Project</span>
+                        <span data-lang="fr">Demarrer Votre Projet</span>
+                        <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                        </svg>
+                    </a>
+                    <a href="#services" class="px-8 py-4 bg-white text-midnight-slate rounded-xl font-semibold text-lg border-2 border-slate-200 hover:border-ice-blue hover:text-ice-blue transition-all duration-300">
+                        <span data-lang="en">View Services</span>
+                        <span data-lang="fr">Voir les Services</span>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Scroll Indicator -->
+            <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
+                <a href="#services" class="flex flex-col items-center gap-2 text-alpine-gray hover:text-ice-blue transition-colors">
+                    <span class="text-sm font-medium">
+                        <span data-lang="en">Scroll to explore</span>
+                        <span data-lang="fr">Defiler pour explorer</span>
+                    </span>
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Services Section -->
+    <section id="services" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Section Header -->
+            <div class="text-center max-w-3xl mx-auto mb-16 reveal">
+                <span class="inline-block px-4 py-2 bg-ice-blue/10 text-ice-blue rounded-full text-sm font-semibold mb-4">
+                    <span data-lang="en">Our Expertise</span>
+                    <span data-lang="fr">Notre Expertise</span>
+                </span>
+                <h2 class="font-serif text-4xl sm:text-5xl font-bold text-midnight-slate mb-6">
+                    <span data-lang="en">Services Tailored to Your Success</span>
+                    <span data-lang="fr">Services Adaptes a Votre Reussite</span>
+                </h2>
+                <p class="text-xl text-alpine-gray leading-relaxed">
+                    <span data-lang="en">From concept to launch, we deliver comprehensive digital solutions with Swiss precision and attention to detail.</span>
+                    <span data-lang="fr">Du concept au lancement, nous offrons des solutions numeriques completes avec la precision suisse et le souci du detail.</span>
+                </p>
+            </div>
+            
+            <!-- Services Grid -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Web Design -->
+                <div class="reveal group p-8 bg-alpine-white rounded-2xl border border-slate-100 hover:border-ice-blue/30 hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+                    <div class="w-14 h-14 bg-ice-blue/10 rounded-xl flex items-center justify-center mb-6 group-hover:bg-ice-blue group-hover:scale-110 transition-all duration-300">
+                        <svg class="w-7 h-7 text-ice-blue group-hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-midnight-slate mb-3">
+                        <span data-lang="en">Web Design</span>
+                        <span data-lang="fr">Design Web</span>
+                    </h3>
+                    <p class="text-alpine-gray leading-relaxed">
+                        <span data-lang="en">Stunning, responsive websites that captivate your audience and drive conversions.</span>
+                        <span data-lang="fr">Sites web remarquables et responsifs qui captivent votre audience et generent des conversions.</span>
+                    </p>
+                </div>
+                
+                <!-- Mobile Apps -->
+                <div class="reveal group p-8 bg-alpine-white rounded-2xl border border-slate-100 hover:border-ice-blue/30 hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+                    <div class="w-14 h-14 bg-ice-blue/10 rounded-xl flex items-center justify-center mb-6 group-hover:bg-ice-blue group-hover:scale-110 transition-all duration-300">
+                        <svg class="w-7 h-7 text-ice-blue group-hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-midnight-slate mb-3">
+                        <span data-lang="en">Mobile Apps</span>
+                        <span data-lang="fr">Applications Mobiles</span>
+                    </h3>
+                    <p class="text-alpine-gray leading-relaxed">
+                        <span data-lang="en">Native and cross-platform mobile applications designed for exceptional user experience.</span>
+                        <span data-lang="fr">Applications mobiles natives et multiplateformes concues pour une experience utilisateur exceptionnelle.</span>
+                    </p>
+                </div>
+                
+                <!-- SEO -->
+                <div class="reveal group p-8 bg-alpine-white rounded-2xl border border-slate-100 hover:border-ice-blue/30 hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+                    <div class="w-14 h-14 bg-ice-blue/10 rounded-xl flex items-center justify-center mb-6 group-hover:bg-ice-blue group-hover:scale-110 transition-all duration-300">
+                        <svg class="w-7 h-7 text-ice-blue group-hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-midnight-slate mb-3">
+                        <span data-lang="en">SEO Optimization</span>
+                        <span data-lang="fr">Optimisation SEO</span>
+                    </h3>
+                    <p class="text-alpine-gray leading-relaxed">
+                        <span data-lang="en">Data-driven SEO strategies to boost your visibility and organic traffic growth.</span>
+                        <span data-lang="fr">Strategies SEO basees sur les donnees pour augmenter votre visibilite et votre trafic organique.</span>
+                    </p>
+                </div>
+                
+                <!-- Brand Identity -->
+                <div class="reveal group p-8 bg-alpine-white rounded-2xl border border-slate-100 hover:border-ice-blue/30 hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+                    <div class="w-14 h-14 bg-ice-blue/10 rounded-xl flex items-center justify-center mb-6 group-hover:bg-ice-blue group-hover:scale-110 transition-all duration-300">
+                        <svg class="w-7 h-7 text-ice-blue group-hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-midnight-slate mb-3">
+                        <span data-lang="en">Brand Identity</span>
+                        <span data-lang="fr">Identite de Marque</span>
+                    </h3>
+                    <p class="text-alpine-gray leading-relaxed">
+                        <span data-lang="en">Cohesive brand identities that tell your story and resonate with your target audience.</span>
+                        <span data-lang="fr">Identites de marque coherentes qui racontent votre histoire et resonnent avec votre audience.</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Pricing Section -->
+    <section id="pricing" class="py-24 bg-alpine-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Section Header -->
+            <div class="text-center max-w-3xl mx-auto mb-16 reveal">
+                <span class="inline-block px-4 py-2 bg-ice-blue/10 text-ice-blue rounded-full text-sm font-semibold mb-4">
+                    <span data-lang="en">Transparent Pricing</span>
+                    <span data-lang="fr">Tarification Transparente</span>
+                </span>
+                <h2 class="font-serif text-4xl sm:text-5xl font-bold text-midnight-slate mb-6">
+                    <span data-lang="en">Start Your Digital Journey</span>
+                    <span data-lang="fr">Commencez Votre Aventure Digitale</span>
+                </h2>
+                <p class="text-xl text-alpine-gray leading-relaxed">
+                    <span data-lang="en">Professional quality at accessible prices. Perfect for startups and small businesses.</span>
+                    <span data-lang="fr">Qualite professionnelle a des prix accessibles. Parfait pour les startups et PME.</span>
+                </p>
+            </div>
+            
+            <!-- Pricing Card -->
+            <div class="max-w-lg mx-auto reveal">
+                <div class="relative bg-white rounded-3xl border-2 border-ice-blue shadow-2xl shadow-ice-blue/10 overflow-hidden">
+                    <!-- Featured Badge -->
+                    <div class="absolute top-0 right-0 bg-ice-blue text-white px-4 py-1 text-sm font-semibold rounded-bl-xl">
+                        <span data-lang="en">Most Popular</span>
+                        <span data-lang="fr">Plus Populaire</span>
+                    </div>
+                    
+                    <div class="p-10">
+                        <!-- Package Name -->
+                        <div class="flex items-center gap-3 mb-6">
+                            <div class="w-12 h-12 bg-ice-blue/10 rounded-xl flex items-center justify-center">
+                                <svg class="w-6 h-6 text-ice-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/>
+                                </svg>
+                            </div>
+                            <h3 class="text-2xl font-bold text-midnight-slate">Alpine Starter</h3>
+                        </div>
+                        
+                        <!-- Price -->
+                        <div class="mb-8">
+                            <div class="flex items-baseline gap-2">
+                                <span class="text-5xl font-bold text-midnight-slate">495</span>
+                                <span class="text-2xl font-semibold text-alpine-gray">CHF</span>
+                            </div>
+                            <p class="text-alpine-gray mt-2">
+                                <span data-lang="en">One-time payment, no hidden fees</span>
+                                <span data-lang="fr">Paiement unique, sans frais caches</span>
+                            </p>
+                        </div>
+                        
+                        <!-- Features -->
+                        <ul class="space-y-4 mb-10">
+                            <li class="flex items-start gap-3">
+                                <svg class="w-6 h-6 text-ice-blue flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                </svg>
+                                <span class="text-midnight-slate">
+                                    <span data-lang="en">5-page responsive website</span>
+                                    <span data-lang="fr">Site responsive de 5 pages</span>
+                                </span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <svg class="w-6 h-6 text-ice-blue flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                </svg>
+                                <span class="text-midnight-slate">
+                                    <span data-lang="en">Custom design tailored to your brand</span>
+                                    <span data-lang="fr">Design personnalise selon votre marque</span>
+                                </span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <svg class="w-6 h-6 text-ice-blue flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                </svg>
+                                <span class="text-midnight-slate">
+                                    <span data-lang="en">Mobile-first optimization</span>
+                                    <span data-lang="fr">Optimisation mobile-first</span>
+                                </span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <svg class="w-6 h-6 text-ice-blue flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                </svg>
+                                <span class="text-midnight-slate">
+                                    <span data-lang="en">Basic SEO setup included</span>
+                                    <span data-lang="fr">Configuration SEO de base incluse</span>
+                                </span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <svg class="w-6 h-6 text-ice-blue flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                </svg>
+                                <span class="text-midnight-slate">
+                                    <span data-lang="en">Contact form integration</span>
+                                    <span data-lang="fr">Integration formulaire de contact</span>
+                                </span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <svg class="w-6 h-6 text-ice-blue flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                </svg>
+                                <span class="text-midnight-slate">
+                                    <span data-lang="en">2 weeks delivery</span>
+                                    <span data-lang="fr">Livraison en 2 semaines</span>
+                                </span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <svg class="w-6 h-6 text-ice-blue flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                </svg>
+                                <span class="text-midnight-slate">
+                                    <span data-lang="en">30 days free support</span>
+                                    <span data-lang="fr">30 jours de support gratuit</span>
+                                </span>
+                            </li>
+                        </ul>
+                        
+                        <!-- CTA -->
+                        <a href="#contact" class="block w-full py-4 bg-midnight-slate text-white text-center rounded-xl font-semibold text-lg hover:bg-ice-blue transition-all duration-300 hover:scale-[1.02]">
+                            <span data-lang="en">Get Started Today</span>
+                            <span data-lang="fr">Commencer Aujourd&apos;hui</span>
+                        </a>
+                        
+                        <p class="text-center text-alpine-gray text-sm mt-4">
+                            <span data-lang="en">Custom packages available for larger projects</span>
+                            <span data-lang="fr">Forfaits personnalises disponibles pour les grands projets</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Trust/Clients Section -->
+    <section id="trust" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Section Header -->
+            <div class="text-center max-w-3xl mx-auto mb-16 reveal">
+                <span class="inline-block px-4 py-2 bg-ice-blue/10 text-ice-blue rounded-full text-sm font-semibold mb-4">
+                    <span data-lang="en">Trusted Partners</span>
+                    <span data-lang="fr">Partenaires de Confiance</span>
+                </span>
+                <h2 class="font-serif text-4xl sm:text-5xl font-bold text-midnight-slate mb-6">
+                    <span data-lang="en">Trusted by Swiss Businesses</span>
+                    <span data-lang="fr">La Confiance des Entreprises Suisses</span>
+                </h2>
+                <p class="text-xl text-alpine-gray leading-relaxed">
+                    <span data-lang="en">We partner with forward-thinking companies across Switzerland to deliver exceptional digital experiences.</span>
+                    <span data-lang="fr">Nous collaborons avec des entreprises innovantes a travers la Suisse pour offrir des experiences digitales exceptionnelles.</span>
+                </p>
+            </div>
+            
+            <!-- Client Logos -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mb-16 reveal">
+                <div class="flex items-center justify-center p-8 bg-alpine-white rounded-2xl border border-slate-100 hover:border-ice-blue/30 hover:shadow-lg transition-all duration-300 group">
+                    <div class="text-2xl font-bold text-alpine-gray group-hover:text-midnight-slate transition-colors">
+                        <span class="font-serif">Luxury</span>Watch
+                    </div>
+                </div>
+                <div class="flex items-center justify-center p-8 bg-alpine-white rounded-2xl border border-slate-100 hover:border-ice-blue/30 hover:shadow-lg transition-all duration-300 group">
+                    <div class="text-2xl font-bold text-alpine-gray group-hover:text-midnight-slate transition-colors">
+                        Swiss<span class="text-ice-blue">Tech</span>
+                    </div>
+                </div>
+                <div class="flex items-center justify-center p-8 bg-alpine-white rounded-2xl border border-slate-100 hover:border-ice-blue/30 hover:shadow-lg transition-all duration-300 group">
+                    <div class="text-2xl font-bold text-alpine-gray group-hover:text-midnight-slate transition-colors">
+                        <span class="font-serif">Geneva</span>Fin
+                    </div>
+                </div>
+                <div class="flex items-center justify-center p-8 bg-alpine-white rounded-2xl border border-slate-100 hover:border-ice-blue/30 hover:shadow-lg transition-all duration-300 group">
+                    <div class="text-2xl font-bold text-alpine-gray group-hover:text-midnight-slate transition-colors">
+                        Alpine<span class="text-ice-blue">Health</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Stats -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 reveal">
+                <div class="text-center p-6">
+                    <div class="text-4xl font-bold text-midnight-slate mb-2">50+</div>
+                    <div class="text-alpine-gray">
+                        <span data-lang="en">Projects Delivered</span>
+                        <span data-lang="fr">Projets Livres</span>
+                    </div>
+                </div>
+                <div class="text-center p-6">
+                    <div class="text-4xl font-bold text-midnight-slate mb-2">98%</div>
+                    <div class="text-alpine-gray">
+                        <span data-lang="en">Client Satisfaction</span>
+                        <span data-lang="fr">Satisfaction Client</span>
+                    </div>
+                </div>
+                <div class="text-center p-6">
+                    <div class="text-4xl font-bold text-midnight-slate mb-2">5+</div>
+                    <div class="text-alpine-gray">
+                        <span data-lang="en">Years Experience</span>
+                        <span data-lang="fr">Ans d&apos;Experience</span>
+                    </div>
+                </div>
+                <div class="text-center p-6">
+                    <div class="text-4xl font-bold text-midnight-slate mb-2">24h</div>
+                    <div class="text-alpine-gray">
+                        <span data-lang="en">Response Time</span>
+                        <span data-lang="fr">Temps de Reponse</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Contact Section -->
+    <section id="contact" class="py-24 bg-alpine-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Section Header -->
+            <div class="text-center max-w-3xl mx-auto mb-16 reveal">
+                <span class="inline-block px-4 py-2 bg-ice-blue/10 text-ice-blue rounded-full text-sm font-semibold mb-4">
+                    <span data-lang="en">Get in Touch</span>
+                    <span data-lang="fr">Contactez-nous</span>
+                </span>
+                <h2 class="font-serif text-4xl sm:text-5xl font-bold text-midnight-slate mb-6">
+                    <span data-lang="en">Let&apos;s Create Something Exceptional</span>
+                    <span data-lang="fr">Creons Quelque Chose d&apos;Exceptionnel</span>
+                </h2>
+                <p class="text-xl text-alpine-gray leading-relaxed">
+                    <span data-lang="en">Ready to elevate your digital presence? Tell us about your project and we&apos;ll get back to you within 24 hours.</span>
+                    <span data-lang="fr">Pret a elever votre presence digitale? Parlez-nous de votre projet et nous vous repondrons sous 24 heures.</span>
+                </p>
+            </div>
+            
+            <div class="grid lg:grid-cols-2 gap-12 items-start">
+                <!-- Contact Form -->
+                <div class="bg-white rounded-3xl p-8 sm:p-10 shadow-xl border border-slate-100 reveal">
+                    <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST" class="space-y-6">
+                        <!-- Name -->
+                        <div>
+                            <label for="name" class="block text-sm font-semibold text-midnight-slate mb-2">
+                                <span data-lang="en">Full Name *</span>
+                                <span data-lang="fr">Nom Complet *</span>
+                            </label>
+                            <input 
+                                type="text" 
+                                id="name" 
+                                name="name" 
+                                required
+                                class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-ice-blue focus:ring-2 focus:ring-ice-blue/20 transition-all duration-200 outline-none"
+                                placeholder="John Smith"
+                            >
+                        </div>
+                        
+                        <!-- Company -->
+                        <div>
+                            <label for="company" class="block text-sm font-semibold text-midnight-slate mb-2">
+                                <span data-lang="en">Company Name</span>
+                                <span data-lang="fr">Nom de l&apos;Entreprise</span>
+                            </label>
+                            <input 
+                                type="text" 
+                                id="company" 
+                                name="company"
+                                class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-ice-blue focus:ring-2 focus:ring-ice-blue/20 transition-all duration-200 outline-none"
+                                placeholder="Your Company SA"
+                            >
+                        </div>
+                        
+                        <!-- Email -->
+                        <div>
+                            <label for="email" class="block text-sm font-semibold text-midnight-slate mb-2">
+                                <span data-lang="en">Email Address *</span>
+                                <span data-lang="fr">Adresse Email *</span>
+                            </label>
+                            <input 
+                                type="email" 
+                                id="email" 
+                                name="email" 
+                                required
+                                class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-ice-blue focus:ring-2 focus:ring-ice-blue/20 transition-all duration-200 outline-none"
+                                placeholder="john@company.ch"
+                            >
+                        </div>
+                        
+                        <!-- Project Type -->
+                        <div>
+                            <label for="project-type" class="block text-sm font-semibold text-midnight-slate mb-2">
+                                <span data-lang="en">Project Type *</span>
+                                <span data-lang="fr">Type de Projet *</span>
+                            </label>
+                            <select 
+                                id="project-type" 
+                                name="project-type" 
+                                required
+                                class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-ice-blue focus:ring-2 focus:ring-ice-blue/20 transition-all duration-200 outline-none bg-white"
+                            >
+                                <option value="" data-lang="en">Select a project type</option>
+                                <option value="website" data-lang="en">Website Design</option>
+                                <option value="mobile" data-lang="en">Mobile App</option>
+                                <option value="branding" data-lang="en">Brand Identity</option>
+                                <option value="seo" data-lang="en">SEO Optimization</option>
+                                <option value="other" data-lang="en">Other</option>
+                            </select>
+                        </div>
+                        
+                        <!-- Budget Range -->
+                        <div>
+                            <label for="budget" class="block text-sm font-semibold text-midnight-slate mb-2">
+                                <span data-lang="en">Budget Range *</span>
+                                <span data-lang="fr">Fourchette de Budget *</span>
+                            </label>
+                            <select 
+                                id="budget" 
+                                name="budget" 
+                                required
+                                class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-ice-blue focus:ring-2 focus:ring-ice-blue/20 transition-all duration-200 outline-none bg-white"
+                            >
+                                <option value="">Select budget range</option>
+                                <option value="under-500">Under 500 CHF</option>
+                                <option value="500-1000">500 - 1,000 CHF</option>
+                                <option value="1000-2500">1,000 - 2,500 CHF</option>
+                                <option value="2500-5000">2,500 - 5,000 CHF</option>
+                                <option value="5000+">5,000+ CHF</option>
+                            </select>
+                        </div>
+                        
+                        <!-- Message -->
+                        <div>
+                            <label for="message" class="block text-sm font-semibold text-midnight-slate mb-2">
+                                <span data-lang="en">Project Details</span>
+                                <span data-lang="fr">Details du Projet</span>
+                            </label>
+                            <textarea 
+                                id="message" 
+                                name="message" 
+                                rows="4"
+                                class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-ice-blue focus:ring-2 focus:ring-ice-blue/20 transition-all duration-200 outline-none resize-none"
+                                placeholder="Tell us about your project..."
+                            ></textarea>
+                        </div>
+                        
+                        <!-- Privacy Checkbox -->
+                        <div class="flex items-start gap-3">
+                            <input 
+                                type="checkbox" 
+                                id="privacy" 
+                                name="privacy" 
+                                required
+                                class="mt-1 w-5 h-5 rounded border-slate-300 text-ice-blue focus:ring-ice-blue"
+                            >
+                            <label for="privacy" class="text-sm text-alpine-gray leading-relaxed">
+                                <span data-lang="en">I agree to the processing of my personal data in accordance with the Swiss Federal Act on Data Protection (FADP). Your data will be used solely to respond to your inquiry.</span>
+                                <span data-lang="fr">J&apos;accepte le traitement de mes donnees personnelles conformement a la Loi federale sur la protection des donnees (LPD). Vos donnees seront utilisees uniquement pour repondre a votre demande.</span>
+                            </label>
+                        </div>
+                        
+                        <!-- Submit Button -->
+                        <button 
+                            type="submit"
+                            class="w-full py-4 bg-midnight-slate text-white rounded-xl font-semibold text-lg hover:bg-ice-blue transition-all duration-300 hover:scale-[1.02] flex items-center justify-center gap-2"
+                        >
+                            <span data-lang="en">Send Message</span>
+                            <span data-lang="fr">Envoyer le Message</span>
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+                            </svg>
+                        </button>
+                    </form>
+                </div>
+                
+                <!-- Contact Info -->
+                <div class="space-y-8 reveal">
+                    <!-- Direct Contact -->
+                    <div class="bg-white rounded-3xl p-8 border border-slate-100">
+                        <h3 class="text-2xl font-bold text-midnight-slate mb-6">
+                            <span data-lang="en">Direct Contact</span>
+                            <span data-lang="fr">Contact Direct</span>
+                        </h3>
+                        
+                        <div class="space-y-6">
+                            <!-- Phone -->
+                            <a href="tel:+41794149251" class="flex items-center gap-4 group">
+                                <div class="w-12 h-12 bg-ice-blue/10 rounded-xl flex items-center justify-center group-hover:bg-ice-blue transition-colors duration-300">
+                                    <svg class="w-6 h-6 text-ice-blue group-hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <p class="text-sm text-alpine-gray">
+                                        <span data-lang="en">Phone</span>
+                                        <span data-lang="fr">Telephone</span>
+                                    </p>
+                                    <p class="text-lg font-semibold text-midnight-slate group-hover:text-ice-blue transition-colors">079 414 92 51</p>
+                                </div>
+                            </a>
+                            
+                            <!-- Email -->
+                            <a href="mailto:alpinecreativeagency@gmail.com" class="flex items-center gap-4 group">
+                                <div class="w-12 h-12 bg-ice-blue/10 rounded-xl flex items-center justify-center group-hover:bg-ice-blue transition-colors duration-300">
+                                    <svg class="w-6 h-6 text-ice-blue group-hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <p class="text-sm text-alpine-gray">Email</p>
+                                    <p class="text-lg font-semibold text-midnight-slate group-hover:text-ice-blue transition-colors">alpinecreativeagency@gmail.com</p>
+                                </div>
+                            </a>
+                            
+                            <!-- Location -->
+                            <div class="flex items-center gap-4">
+                                <div class="w-12 h-12 bg-ice-blue/10 rounded-xl flex items-center justify-center">
+                                    <svg class="w-6 h-6 text-ice-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <p class="text-sm text-alpine-gray">
+                                        <span data-lang="en">Location</span>
+                                        <span data-lang="fr">Emplacement</span>
+                                    </p>
+                                    <p class="text-lg font-semibold text-midnight-slate">Geneva & Founex, Switzerland</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Response Time -->
+                    <div class="bg-gradient-to-br from-midnight-slate to-slate-800 rounded-3xl p-8 text-white">
+                        <div class="flex items-center gap-4 mb-4">
+                            <div class="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center">
+                                <svg class="w-6 h-6 text-ice-blue-light" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <p class="text-white/70 text-sm">
+                                    <span data-lang="en">Response Time</span>
+                                    <span data-lang="fr">Temps de Reponse</span>
+                                </p>
+                                <p class="text-2xl font-bold">
+                                    <span data-lang="en">Within 24 Hours</span>
+                                    <span data-lang="fr">Sous 24 Heures</span>
+                                </p>
+                            </div>
+                        </div>
+                        <p class="text-white/80 leading-relaxed">
+                            <span data-lang="en">We value your time. Every inquiry receives a personalized response from our team, not an automated message.</span>
+                            <span data-lang="fr">Nous valorisons votre temps. Chaque demande recoit une reponse personnalisee de notre equipe, pas un message automatique.</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="bg-midnight-slate text-white py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-10 mb-12">
+                <!-- Brand -->
+                <div class="md:col-span-2">
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="w-10 h-10 bg-ice-blue rounded-lg flex items-center justify-center">
+                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                            </svg>
+                        </div>
+                        <span class="text-xl font-semibold">Alpine Creative Agency</span>
+                    </div>
+                    <p class="text-slate-400 leading-relaxed mb-6 max-w-md">
+                        <span data-lang="en">Crafting premium digital experiences with Swiss precision. Based in Geneva and Founex, serving clients worldwide.</span>
+                        <span data-lang="fr">Creation d&apos;experiences digitales premium avec la precision suisse. Bases a Geneve et Founex, nous servons des clients du monde entier.</span>
+                    </p>
+                    <div class="flex gap-4">
+                        <a href="#" class="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center hover:bg-ice-blue transition-colors duration-300">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/></svg>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center hover:bg-ice-blue transition-colors duration-300">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center hover:bg-ice-blue transition-colors duration-300">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="font-semibold mb-4">
+                        <span data-lang="en">Quick Links</span>
+                        <span data-lang="fr">Liens Rapides</span>
+                    </h4>
+                    <ul class="space-y-3">
+                        <li><a href="#services" class="text-slate-400 hover:text-white transition-colors">
+                            <span data-lang="en">Services</span>
+                            <span data-lang="fr">Services</span>
+                        </a></li>
+                        <li><a href="#pricing" class="text-slate-400 hover:text-white transition-colors">
+                            <span data-lang="en">Pricing</span>
+                            <span data-lang="fr">Tarifs</span>
+                        </a></li>
+                        <li><a href="#trust" class="text-slate-400 hover:text-white transition-colors">
+                            <span data-lang="en">Clients</span>
+                            <span data-lang="fr">Clients</span>
+                        </a></li>
+                        <li><a href="#contact" class="text-slate-400 hover:text-white transition-colors">
+                            <span data-lang="en">Contact</span>
+                            <span data-lang="fr">Contact</span>
+                        </a></li>
+                    </ul>
+                </div>
+                
+                <!-- Contact -->
+                <div>
+                    <h4 class="font-semibold mb-4">
+                        <span data-lang="en">Contact</span>
+                        <span data-lang="fr">Contact</span>
+                    </h4>
+                    <ul class="space-y-3 text-slate-400">
+                        <li>079 414 92 51</li>
+                        <li>alpinecreativeagency@gmail.com</li>
+                        <li>Geneva & Founex, Switzerland</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Bottom Bar -->
+            <div class="border-t border-slate-800 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+                <p class="text-slate-400 text-sm">
+                    &copy; 2024 Alpine Creative Agency. All rights reserved.
+                </p>
+                <div class="flex gap-6 text-sm">
+                    <a href="#" class="text-slate-400 hover:text-white transition-colors">
+                        <span data-lang="en">Privacy Policy</span>
+                        <span data-lang="fr">Politique de Confidentialite</span>
+                    </a>
+                    <a href="#" class="text-slate-400 hover:text-white transition-colors">
+                        <span data-lang="en">Terms of Service</span>
+                        <span data-lang="fr">Conditions d&apos;Utilisation</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- JavaScript -->
+    <script>
+        // Language Toggle
+        function setLanguage(lang) {
+            document.documentElement.lang = lang;
+            
+            const enBtn = document.getElementById('lang-en');
+            const frBtn = document.getElementById('lang-fr');
+            
+            if (lang === 'en') {
+                enBtn.classList.add('bg-white', 'text-midnight-slate', 'shadow-sm');
+                enBtn.classList.remove('text-alpine-gray');
+                frBtn.classList.remove('bg-white', 'text-midnight-slate', 'shadow-sm');
+                frBtn.classList.add('text-alpine-gray');
+            } else {
+                frBtn.classList.add('bg-white', 'text-midnight-slate', 'shadow-sm');
+                frBtn.classList.remove('text-alpine-gray');
+                enBtn.classList.remove('bg-white', 'text-midnight-slate', 'shadow-sm');
+                enBtn.classList.add('text-alpine-gray');
+            }
+            
+            localStorage.setItem('language', lang);
+        }
+        
+        // Load saved language preference
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedLang = localStorage.getItem('language') || 'en';
+            setLanguage(savedLang);
+        });
+        
+        // Mobile Menu Toggle
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const menuIcon = document.getElementById('menu-icon');
+            const closeIcon = document.getElementById('close-icon');
+            
+            menu.classList.toggle('hidden');
+            menuIcon.classList.toggle('hidden');
+            closeIcon.classList.toggle('hidden');
+        }
+        
+        function closeMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const menuIcon = document.getElementById('menu-icon');
+            const closeIcon = document.getElementById('close-icon');
+            
+            menu.classList.add('hidden');
+            menuIcon.classList.remove('hidden');
+            closeIcon.classList.add('hidden');
+        }
+        
+        // Scroll Reveal Animation
+        function reveal() {
+            const reveals = document.querySelectorAll('.reveal');
+            
+            reveals.forEach(element => {
+                const windowHeight = window.innerHeight;
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < windowHeight - elementVisible) {
+                    element.classList.add('active');
+                }
+            });
+        }
+        
+        window.addEventListener('scroll', reveal);
+        window.addEventListener('load', reveal);
+        
+        // Navbar background on scroll
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('shadow-lg');
+            } else {
+                navbar.classList.remove('shadow-lg');
+            }
+        });
+    </script>
+</body>
+</html>
